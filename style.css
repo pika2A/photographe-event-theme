@@ -7,3 +7,24 @@ Version: 1.0
 Tags: Photographe, event, photos
 Text Domain: photographe-event
 */
+/* Space Mono Regular */
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Space Mono'), local('SpaceMono-Regular'), format('truetype');
+}
+
+body {
+    text-decoration-style: none;
+    background-color: rgb(241, 161, 241);
+    font-family: 'space mono', monospace;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}

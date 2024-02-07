@@ -1,3 +1,48 @@
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Space Mono"), local("SpaceMono-Regular"), format("truetype");
+}
 body {
-  background-color: purple;
+  margin: 0;
+  color: black;
+  text-decoration-style: none;
+  background-color: rgb(241, 161, 241);
+  font-family: "space mono", monospace;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* ************************** HEARDER **************************** */
+.header {
+  margin: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+/* ************************ FOOTER ******************************** */
+.footer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 100px;
+  text-transform: uppercase;
+  border-top: solid 1px;
+  padding: 8px;
 }/*# sourceMappingURL=style.css.map */
