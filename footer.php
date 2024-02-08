@@ -1,11 +1,12 @@
 </main>
 
-<footer >
-    <ul class="footer">
-        <li><a href="#">Mentions legales</a></li>
-        <li><a href="#">Vie privée</a></li>
-        <li><a href="">Tous droits réservés</a></li>
-    </ul>
+<footer class="footer">
+        <?php wp_nav_menu([
+            'theme_location' => 'footer-menu',
+        ]); ?>
+
+        <p>Tous droits réservés</p>
+
     <?php wp_footer(); ?>
 
 </footer>
