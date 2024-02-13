@@ -1,0 +1,35 @@
+/* ************************ FOOTER ******************************** */
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 90px;
+  text-transform: uppercase;
+}
+
+.menu-footer-container {
+  width: 380px;
+  padding: 0;
+}
+
+#menu-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ***************** MOBILE FOOTER *************************** */
+@media screen and (max-width: 768px) {
+  .footer {
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #menu-footer {
+    padding: 0;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 50px;
+  }
+}/*# sourceMappingURL=footer.css.map */

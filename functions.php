@@ -32,6 +32,16 @@ function photographe_event_theme_enqueue_styles()
 
 // Ajout de JavaScript pour gérer le menu mobile
 function photographe_event_enqueue_scripts() {
+
+// Ajout du script pour la modale
+    wp_enqueue_script(
+        'photographe_event_modal',
+        get_template_directory_uri() . '/js/modal.js',
+        array(),
+        '1.0',
+        true
+    );
+// Ajout du script pour le menu burger
     wp_enqueue_script(
         'photographe_event_menu',
         get_template_directory_uri() . '/js/menu.js',
