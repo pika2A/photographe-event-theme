@@ -92,6 +92,7 @@
 }
 
 .menu-footer-container {
+  height: 90px;
   width: 380px;
   padding: 0;
 }
