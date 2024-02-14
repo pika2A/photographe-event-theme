@@ -21,17 +21,21 @@
 /* ***************** MOBILE FOOTER *************************** */
 @media screen and (max-width: 768px) {
   .footer {
-    gap: 20px;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
   #menu-footer {
+    position: relative;
     padding: 0;
     flex-direction: column;
     justify-content: end;
     align-items: center;
     gap: 50px;
+    & a {
+      font-size: 0.5em;
+    }
   }
 }
