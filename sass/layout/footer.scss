@@ -1,6 +1,7 @@
 /* ************************ FOOTER ******************************** */
 
 .footer {
+  border-top: 2px solid;
   display: flex;
   justify-content: center;
   gap: 90px;
@@ -26,6 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 25px;
   }
 
   #menu-footer {
@@ -34,7 +36,7 @@
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 50px;
+    gap: 0;
     & a {
       font-size: 0.5em;
     }

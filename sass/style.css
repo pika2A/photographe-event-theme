@@ -1,5 +1,13 @@
 @charset "UTF-8";
 /* ** IMPORT LAYOUT ** */
+@font-face {
+  font-family: "Space Mono";
+  src: url("../assets/fonts/Space_Mono/SpaceMono-Regular.ttf") format("truetype"), url("../assets/fonts/Space_Mono/SpaceMono-Bold.ttf") format("truetype"), url("../assets/fonts/Space_Mono/SpaceMono-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype"), url("../assets/fonts/Poppins/Poppins-Black.ttf") format("truetype"), url("../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype"), url("../assets/fonts/Poppins/Poppins-Italic.ttf") format("truetype"), url("../assets/fonts/Poppins/Poppins-Light.ttf") format("truetype"), url("../assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
 /* ************************** HEADER **************************** */
 .header {
   margin: 20px 100px;
@@ -36,7 +44,7 @@
   }
   .menu {
     position: absolute;
-    top: 100px;
+    top: 85px;
     left: 0;
     flex-direction: column;
     width: 100%;
@@ -85,6 +93,7 @@
 }
 /* ************************ FOOTER ******************************** */
 .footer {
+  border-top: 2px solid;
   display: flex;
   justify-content: center;
   gap: 90px;
@@ -110,6 +119,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 25px;
   }
   #menu-footer {
     position: relative;
@@ -117,7 +127,7 @@
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 50px;
+    gap: 0;
   }
   #menu-footer a {
     font-size: 0.5em;
@@ -125,7 +135,7 @@
 }
 /* La modale (background) */
 #myModal {
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .modal {
