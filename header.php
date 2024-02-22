@@ -14,7 +14,7 @@
     <?php wp_body_open(); ?>
     <header class="header">
         <a href="http://photographe-event.local/">
-            <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/images/logo.png'; ?> " alt="Logo de Planty">
+            <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/images/logo.png'; ?> " alt="Logo de photographeEvent">
         </a>
     <nav>
         <button class="menu-toggle" aria-controls="menu" aria-expanded="false">

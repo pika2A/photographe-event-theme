@@ -49,7 +49,7 @@
     transition: height 1.5s ease;
   }
   .menu.open {
-    height: 80vh;
+    height: 88vh;
   }
   .menu-toggle {
     padding-top: 5px;

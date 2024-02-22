@@ -51,6 +51,11 @@
   border-radius: 2px;
   border: none;
   height: 50px;
+  transition: all 1.5s;
+}
+.form input.wpcf7-submit:hover,
+.form .wpcf7-textarea.wpcf7-submit:hover {
+  background-color: #000;
 }
 
 /* The Close Button */

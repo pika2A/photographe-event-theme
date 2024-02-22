@@ -58,7 +58,7 @@
     transition: height 1.5s ease;
   }
   .menu.open {
-    height: 80vh;
+    height: 88vh;
   }
   .menu-toggle {
     padding-top: 5px;
@@ -185,6 +185,11 @@
   border-radius: 2px;
   border: none;
   height: 50px;
+  transition: all 1.5s;
+}
+.form input.wpcf7-submit:hover,
+.form .wpcf7-textarea.wpcf7-submit:hover {
+  background-color: #000;
 }
 
 /* The Close Button */
@@ -229,6 +234,32 @@
     width: 190px;
   }
 }
+.single_photo {
+  width: 50%;
+}
+.single_photo img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.prev-photo-link:hover .thumbnail-preview {
+  display: block;
+}
+
+.next-photo-link:hover .thumbnail-preview {
+  display: block;
+}
+
+.thumbnail-preview {
+  display: none;
+  position: absolute;
+  top: 80%;
+  transform: translateY(-50%);
+  /* Ajoutez d'autres styles CSS pour la miniature */
+}
+
 /* ** IMPORT FONTS ** */
 /* ********* STYLE GENERALE ********** */
 body {
@@ -244,4 +275,16 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+button,
+input {
+  border: none;
+  transition: all 1.5s;
+}
+
+button:hover,
+input:hover {
+  background-color: black;
+  color: white;
 }/*# sourceMappingURL=style.css.map */

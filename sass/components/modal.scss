@@ -46,6 +46,10 @@
       border-radius: 2px;
       border: none;
       height: 50px;
+      transition: all 1.5s;
+      &:hover {
+        background-color: #000;
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
 @import "./layout/header.scss";
 @import "./layout/footer.scss";
 @import "./components/modal.scss";
-
+@import "./layout/single-photo.scss";
 /* ** IMPORT FONTS ** */
 
 /* ********* STYLE GENERALE ********** */
@@ -20,4 +20,15 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+button,
+input {
+  border: none;
+  transition: all 1.5s;
+}
+button:hover,
+input:hover {
+  background-color: black;
+  color: white;
 }

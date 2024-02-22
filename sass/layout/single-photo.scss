@@ -1,0 +1,25 @@
+.single_photo {
+  width: 50%;
+  & img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+//affichage miniature
+.prev-photo-link:hover .thumbnail-preview {
+  display: block;
+}
+
+.next-photo-link:hover .thumbnail-preview {
+  display: block;
+}
+
+.thumbnail-preview {
+  display: none;
+  position: absolute;
+  top: 80%;
+  transform: translateY(-50%);
+  /* Ajoutez d'autres styles CSS pour la miniature */
+}
