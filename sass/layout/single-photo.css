@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .single_photo {
   width: 50%;
 }
@@ -8,18 +9,17 @@
      object-fit: contain;
 }
 
-.prev-photo-link:hover .thumbnail-preview {
-  display: block;
+.prev-photo-link img,
+.next-photo-link img {
+  transition: all 0.3s ease-in-out;
 }
 
-.next-photo-link:hover .thumbnail-preview {
-  display: block;
+.prev-photo-link:hover img,
+.next-photo-link:hover img {
+  width: 100px; /* Changez cela en fonction de la taille souhaitée pour les miniatures */
 }
 
-.thumbnail-preview {
-  display: none;
-  position: absolute;
-  top: 80%;
-  transform: translateY(-50%);
-  /* Ajoutez d'autres styles CSS pour la miniature */
+.related-photo .attachment-post-thumbnail {
+  width: 500px;
+  height: auto;
 }/*# sourceMappingURL=single-photo.css.map */

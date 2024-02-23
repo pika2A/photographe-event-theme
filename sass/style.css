@@ -187,9 +187,10 @@
   height: 50px;
   transition: all 1.5s;
 }
-.form input.wpcf7-submit:hover,
-.form .wpcf7-textarea.wpcf7-submit:hover {
+.form input.wpcf7-submit.hover_input:hover,
+.form .wpcf7-textarea.wpcf7-submit.hover_input:hover {
   background-color: #000;
+  color: white;
 }
 
 /* The Close Button */
@@ -234,6 +235,49 @@
     width: 190px;
   }
 }
+.related-photo {
+  width: 500px;
+  position: relative;
+}
+
+.related-photo img {
+  transition: all 0.3s ease-in-out;
+}
+
+.related-photo:hover img {
+  filter: grayscale(100%);
+}
+
+.related-photo::before,
+.related-photo::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.related-photo:hover::before,
+.related-photo:hover::after {
+  opacity: 1;
+}
+
+.related-photo::before {
+  top: 50%;
+  left: 50%;
+  background-image: url("../assets/images/eye-icon.png");
+  /* Remplacez 'path/to/eye-icon.png' par le chemin vers votre icône œil */
+}
+
+.related-photo::after {
+  top: 20px;
+  right: 20px;
+  background-image: url("../assets/images/fullscreen-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .single_photo {
   width: 50%;
 }
@@ -244,20 +288,19 @@
      object-fit: contain;
 }
 
-.prev-photo-link:hover .thumbnail-preview {
-  display: block;
+.prev-photo-link img,
+.next-photo-link img {
+  transition: all 0.3s ease-in-out;
 }
 
-.next-photo-link:hover .thumbnail-preview {
-  display: block;
+.prev-photo-link:hover img,
+.next-photo-link:hover img {
+  width: 100px; /* Changez cela en fonction de la taille souhaitée pour les miniatures */
 }
 
-.thumbnail-preview {
-  display: none;
-  position: absolute;
-  top: 80%;
-  transform: translateY(-50%);
-  /* Ajoutez d'autres styles CSS pour la miniature */
+.related-photo .attachment-post-thumbnail {
+  width: 500px;
+  height: auto;
 }
 
 /* ** IMPORT FONTS ** */
@@ -277,14 +320,14 @@ ul {
   list-style-type: none;
 }
 
-button,
-input {
+.hover_button,
+.hover_input {
   border: none;
   transition: all 1.5s;
 }
 
-button:hover,
-input:hover {
+.hover_button:hover,
+.hover_input:hover {
   background-color: black;
   color: white;
 }/*# sourceMappingURL=style.css.map */

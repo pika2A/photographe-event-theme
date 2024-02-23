@@ -1,1 +1,1 @@
-{"version":3,"sources":["single-photo.scss","single-photo.css"],"names":[],"mappings":"AAAA;EACE,UAAA;ACCF;ADAE;EACE,WAAA;EACA,YAAA;EACA,sBAAA;KAAA,mBAAA;ACEJ;;ADGA;EACE,cAAA;ACAF;;ADGA;EACE,cAAA;ACAF;;ADGA;EACE,aAAA;EACA,kBAAA;EACA,QAAA;EACA,2BAAA;EACA,kDAAA;ACAF","file":"single-photo.css"}
+{"version":3,"sources":["single-photo.css","single-photo.scss"],"names":[],"mappings":"AAAA,gBAAgB;ACAhB;EACE,UAAA;ADEF;ACDE;EACE,WAAA;EACA,YAAA;EACA,sBAAA;KAAA,mBAAA;ADGJ;;ACEA;;EAEE,gCAAA;ADCF;;ACEA;;EAEE,YAAA,EAAA,wEAAA;ADCF;;ACEA;EACE,YAAA;EACA,YAAA;ADCF","file":"single-photo.css"}

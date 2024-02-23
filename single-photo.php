@@ -47,51 +47,74 @@ if (!empty($categories_photos_terms) && !is_wp_error($categories_photos_terms)) 
 $year = get_the_date('Y');
 echo '<p>Année : ' . $year . '</p>';
 
-//intégration du bouton contact avec la modal
+
 // intégration du bouton contact avec la modal
-echo '<div><p>Cette photo vous intéresse ?</p><button id="contactButton" data-reference="' . esc_attr($reference) . '">Contact</button></div>';
+echo '<div><p>Cette photo vous intéresse ?</p><button id="contactButton" class="hover_button" data-reference="' . esc_attr($reference) . '">Contact</button></div>';
 
 // Ajout de la modal
 echo '<div id="myModal" class="modal">';
 echo do_shortcode('[contact-form-7 id="04bac1f" title="Formulaire de contact 1"]');
 echo '</div>';
 
-// Déterminer les ID des photos précédentes et suivantes
+// Récupérez le post précédent et le post suivant
 $prev_post = get_previous_post();
 $next_post = get_next_post();
 
-// Vérifier si les résultats ne sont pas vides ou null
-if ($prev_post) {
+// Vérifiez si le post précédent existe
+if (!empty($prev_post)) {
+    // Si oui, récupérez son ID
     $prev_photo_id = $prev_post->ID;
-} else {
-    $prev_photo_id = null; // ou toute autre valeur par défaut
-}
-
-if ($next_post) {
-    $next_photo_id = $next_post->ID;
-} else {
-    $next_photo_id = null; // ou toute autre valeur par défaut
-}
-
-
-
-// Affichage des liens de navigation avec miniatures
-echo '<div>';
-if (!empty($prev_photo_id)) {
-    echo '<a href="' . get_permalink($prev_photo_id) . '" class="prev-photo-link" title="Photo précédente">';
+    // Créez un lien vers le post précédent
+    // L'attribut data-thumb contient l'URL de la miniature de la photo précédente
+    echo '<a href="' . get_permalink($prev_photo_id) . '" class="prev-photo-link" title="Photo précédente" data-thumb="' . get_the_post_thumbnail_url($prev_photo_id, 'thumbnail') . '">';
+    // Affichez une image de flèche gauche
     echo '<img src="' . get_template_directory_uri() . './assets/images/left-arrow.png" alt="Flèche gauche">';
-    echo '<img src="' . wp_get_attachment_image($prev_photo_id) . '" class="thumbnail-preview" alt="Miniature de la photo précédente">';
     echo '</a>';
 }
-if (!empty($next_photo_id)) {
-    echo '<a href="' . get_permalink($next_photo_id) . '" class="next-photo-link" title="Photo suivante">';
+
+// Faites la même chose pour le post suivant
+if (!empty($next_post)) {
+    $next_photo_id = $next_post->ID;
+    echo '<a href="' . get_permalink($next_photo_id) . '" class="next-photo-link" title="Photo suivante" data-thumb="' . get_the_post_thumbnail_url($next_photo_id, 'thumbnail') . '">';
     echo '<img src="' . get_template_directory_uri() . './assets/images/right-arrow.png" alt="Flèche droite">';
     echo '</a>';
 }
+
 echo '</div>';
 
-
-
 endwhile; // End of the Loop.
+
+$categories_photos_terms = get_the_terms(get_the_ID(), 'categories-photos');
+if (!empty($categories_photos_terms) && !is_wp_error($categories_photos_terms)) {
+    $term_ids = array_map(function($term) {
+        return $term->term_id;
+    }, $categories_photos_terms);
+    $related_photos = get_posts(array(
+        'post_type' => 'photo',
+        'posts_per_page' => 2,
+        'post__not_in' => array(get_the_ID()),
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'categories-photos',
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+            ),
+        ),
+    ));
+}
+
+if (!empty($related_photos)) {
+    echo '<div class="related-photos">';
+    echo '<h2>Vous aimerez aussi :</h2>';
+    foreach ($related_photos as $photo) {
+        echo '<div class="related-photo">';
+        echo '<a href="' . get_permalink($photo->ID) . '" title="' . get_the_title($photo->ID) . '">';
+        echo get_the_post_thumbnail($photo->ID);
+        echo '</a>';
+        echo '</div>';
+    }
+    echo '</div>';
+}
+
  
  get_footer();

@@ -47,8 +47,9 @@
       border: none;
       height: 50px;
       transition: all 1.5s;
-      &:hover {
+      &.hover_input:hover {
         background-color: #000;
+        color: white;
       }
     }
   }

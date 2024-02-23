@@ -50,10 +50,27 @@ function photographe_event_enqueue_scripts() {
         '1.0',
         true
     );
+
 // Ajout du script pour le menu burger
     wp_enqueue_script(
         'photographe_event_menu',
         get_template_directory_uri() . '/js/menu.js',
+        array(),
+        '1.0',
+        true
+    );
+    // Ajout du script pour les miniatures
+    wp_enqueue_script(
+        'photographe_event_miniature',
+        get_template_directory_uri() . '/js/miniature.js',
+        array(),
+        '1.0',
+        true
+    );
+
+    wp_enqueue_script(
+        'photographe_event_lightbox',
+        get_template_directory_uri() . '/js/lightbox.js',
         array(),
         '1.0',
         true

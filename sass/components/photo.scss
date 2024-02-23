@@ -1,0 +1,42 @@
+.related-photo {
+  width: 500px;
+  position: relative;
+}
+
+.related-photo img {
+  transition: all 0.3s ease-in-out;
+}
+
+.related-photo:hover img {
+  filter: grayscale(100%);
+}
+
+.related-photo::before,
+.related-photo::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.related-photo:hover::before,
+.related-photo:hover::after {
+  opacity: 1;
+}
+
+.related-photo::before {
+  top: 50%;
+  left: 50%;
+  background-image: url("../assets/images/eye-icon.png");
+  /* Remplacez 'path/to/eye-icon.png' par le chemin vers votre icône œil */
+}
+
+.related-photo::after {
+  top: 20px;
+  right: 20px;
+  background-image: url("../assets/images/fullscreen-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
