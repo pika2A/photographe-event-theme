@@ -1,24 +1,178 @@
-.single_photo {
-  width: 50%;
-  & img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+.section_photo {
+  display: flex;
+  margin: 0 100px;
+  align-items: flex-end;
+  & .description_photo {
+    width: 50%;
+    & h1 {
+      width: inherit;
+      font-style: italic;
+      font-size: 3em;
+      font-weight: 400;
+    }
+    & :last-child {
+      border-bottom: solid 2px black;
+      margin-bottom: 0.4em;
+      padding-bottom: 25px;
+    }
+  }
+  & .single_photo {
+    width: 50%;
+    padding-left: 1em;
+    & img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 
-//affichage miniature
-.prev-photo-link img,
-.next-photo-link img {
-  transition: all 0.3s ease-in-out;
+/* ********************** section navigation ****************** */
+.section_navigation {
+  height: 130px;
+  display: flex;
+  margin: 0 100px 70px;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: solid 2px black;
+  padding-bottom: 1em;
+  & .contact_photo {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    & button {
+      width: 40%;
+      height: 50px;
+      margin-right: 0.4em;
+    }
+  }
+  & .navigation_photo {
+    display: flex;
+    gap: 50px;
+  }
 }
 
-.prev-photo-link:hover img,
-.next-photo-link:hover img {
-  width: 100px; /* Changez cela en fonction de la taille souhaitée pour les miniatures */
+.next-photo-link {
+  position: relative;
+  .thumbnail {
+    position: absolute;
+    top: 50%; /* Positionne le haut de l'élément au milieu de l'élément parent */
+    left: 50%; /* Positionne la gauche de l'élément au milieu de l'élément parent */
+    width: 0;
+    height: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.8s ease-in-out;
+    transform: translate(
+      -88%,
+      -113%
+    ); /* Déplace l'élément vers le haut et vers la gauche de 50% de sa propre taille, ce qui le centre parfaitement */
+    display: flex; /* Utilise flexbox pour aligner l'image au centre */
+    align-items: center; /* Centre l'image verticalement */
+    justify-content: center; /* Centre l'image horizontalement */
+  }
+}
+.prev-photo-link {
+  position: relative;
+  & .thumbnail {
+    position: absolute;
+    top: 50%; /* Positionne le haut de l'élément au milieu de l'élément parent */
+    left: 50%; /* Positionne la gauche de l'élément au milieu de l'élément parent */
+    width: 0;
+    height: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.8s ease-in-out;
+    transform: translate(
+      -13%,
+      -113%
+    ); /* Déplace l'élément vers le haut et vers la gauche de 50% de sa propre taille, ce qui le centre parfaitement */
+    display: flex; /* Utilise flexbox pour aligner l'image au centre */
+    align-items: center; /* Centre l'image verticalement */
+    justify-content: center; /* Centre l'image horizontalement */
+  }
 }
 
-.related-photo .attachment-post-thumbnail {
-  width: 500px;
-  height: auto;
+.prev-photo-link:hover .thumbnail,
+.next-photo-link:hover .thumbnail {
+  width: 100px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
+  height: 100px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
+}
+
+/* ******************* photos associées ******************** */
+.section_suggestion {
+  & h2 {
+    margin: 50px 100px;
+  }
+}
+.suggestion_photo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 100px 50px;
+
+  .related-photo {
+    width: 50%;
+    & img {
+      width: 95%;
+      height: 60vh;
+      object-fit: cover;
+    }
+  }
+  & :last-child {
+    text-align: end;
+  }
+}
+/* ****************** version responsive ******************* */
+
+@media screen and (max-width: 1024px) {
+  .section_photo {
+    flex-direction: column-reverse;
+    margin: 0 30px;
+    border-bottom: solid 2px black;
+    & .description_photo {
+      width: 100%;
+      & h1 {
+        font-size: 2em;
+      }
+      & :last-child {
+        border: none;
+      }
+    }
+    & .single_photo {
+      width: 100%;
+    }
+  }
+
+  .section_navigation {
+    width: 100%;
+    margin: auto;
+    & .contact_photo {
+      width: 80%;
+      flex-direction: column;
+      margin: auto;
+      & button {
+        margin-bottom: 10px;
+        width: 100%;
+      }
+    }
+    & .navigation_photo {
+      display: none;
+    }
+  }
+  .section_suggestion {
+    & h2 {
+      margin: 25px 30px;
+    }
+    & .suggestion_photo {
+      flex-direction: column;
+      margin: 0 30px;
+      gap: 20px;
+      & .related-photo {
+        width: 100%;
+        & img {
+          height: 45vh;
+          width: 100%;
+        }
+      }
+    }
+  }
 }

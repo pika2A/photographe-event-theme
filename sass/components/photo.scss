@@ -1,5 +1,4 @@
 .related-photo {
-  width: 500px;
   position: relative;
 }
 
@@ -28,9 +27,11 @@
 
 .related-photo::before {
   top: 50%;
-  left: 50%;
+  left: 40%;
   background-image: url("../assets/images/eye-icon.png");
-  /* Remplacez 'path/to/eye-icon.png' par le chemin vers votre icône œil */
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
 }
 
 .related-photo::after {

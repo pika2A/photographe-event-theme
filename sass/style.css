@@ -236,7 +236,6 @@
   }
 }
 .related-photo {
-  width: 500px;
   position: relative;
 }
 
@@ -265,9 +264,11 @@
 
 .related-photo::before {
   top: 50%;
-  left: 50%;
+  left: 40%;
   background-image: url("../assets/images/eye-icon.png");
-  /* Remplacez 'path/to/eye-icon.png' par le chemin vers votre icône œil */
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
 }
 
 .related-photo::after {
@@ -278,34 +279,179 @@
   background-repeat: no-repeat;
 }
 
-.single_photo {
+.section_photo {
+  display: flex;
+  margin: 0 100px;
+  align-items: flex-end;
+}
+.section_photo .description_photo {
   width: 50%;
 }
-.single_photo img {
+.section_photo .description_photo h1 {
+  width: inherit;
+  font-style: italic;
+  font-size: 3em;
+  font-weight: 400;
+}
+.section_photo .description_photo :last-child {
+  border-bottom: solid 2px black;
+  margin-bottom: 0.4em;
+  padding-bottom: 25px;
+}
+.section_photo .single_photo {
+  width: 50%;
+  padding-left: 1em;
+}
+.section_photo .single_photo img {
   width: 100%;
   height: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 
-.prev-photo-link img,
-.next-photo-link img {
-  transition: all 0.3s ease-in-out;
+/* ********************** section navigation ****************** */
+.section_navigation {
+  height: 130px;
+  display: flex;
+  margin: 0 100px 70px;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: solid 2px black;
+  padding-bottom: 1em;
+}
+.section_navigation .contact_photo {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+.section_navigation .contact_photo button {
+  width: 40%;
+  height: 50px;
+  margin-right: 0.4em;
+}
+.section_navigation .navigation_photo {
+  display: flex;
+  gap: 50px;
 }
 
-.prev-photo-link:hover img,
-.next-photo-link:hover img {
-  width: 100px; /* Changez cela en fonction de la taille souhaitée pour les miniatures */
+.next-photo-link {
+  position: relative;
+}
+.next-photo-link .thumbnail {
+  position: absolute;
+  top: 50%; /* Positionne le haut de l'élément au milieu de l'élément parent */
+  left: 50%; /* Positionne la gauche de l'élément au milieu de l'élément parent */
+  width: 0;
+  height: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.8s ease-in-out;
+  transform: translate(-88%, -113%); /* Déplace l'élément vers le haut et vers la gauche de 50% de sa propre taille, ce qui le centre parfaitement */
+  display: flex; /* Utilise flexbox pour aligner l'image au centre */
+  align-items: center; /* Centre l'image verticalement */
+  justify-content: center; /* Centre l'image horizontalement */
 }
 
-.related-photo .attachment-post-thumbnail {
-  width: 500px;
-  height: auto;
+.prev-photo-link {
+  position: relative;
+}
+.prev-photo-link .thumbnail {
+  position: absolute;
+  top: 50%; /* Positionne le haut de l'élément au milieu de l'élément parent */
+  left: 50%; /* Positionne la gauche de l'élément au milieu de l'élément parent */
+  width: 0;
+  height: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.8s ease-in-out;
+  transform: translate(-13%, -113%); /* Déplace l'élément vers le haut et vers la gauche de 50% de sa propre taille, ce qui le centre parfaitement */
+  display: flex; /* Utilise flexbox pour aligner l'image au centre */
+  align-items: center; /* Centre l'image verticalement */
+  justify-content: center; /* Centre l'image horizontalement */
 }
 
+.prev-photo-link:hover .thumbnail,
+.next-photo-link:hover .thumbnail {
+  width: 100px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
+  height: 100px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
+}
+
+/* ******************* photos associées ******************** */
+.section_suggestion h2 {
+  margin: 50px 100px;
+}
+
+.suggestion_photo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 100px 50px;
+}
+.suggestion_photo .related-photo {
+  width: 50%;
+}
+.suggestion_photo .related-photo img {
+  width: 95%;
+  height: 60vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.suggestion_photo :last-child {
+  text-align: end;
+}
+
+/* ****************** version responsive ******************* */
+@media screen and (max-width: 1024px) {
+  .section_photo {
+    flex-direction: column-reverse;
+    margin: 0 30px;
+    border-bottom: solid 2px black;
+  }
+  .section_photo .description_photo {
+    width: 100%;
+  }
+  .section_photo .description_photo h1 {
+    font-size: 2em;
+  }
+  .section_photo .description_photo :last-child {
+    border: none;
+  }
+  .section_photo .single_photo {
+    width: 100%;
+  }
+  .section_navigation {
+    width: 100%;
+    margin: auto;
+  }
+  .section_navigation .contact_photo {
+    width: 80%;
+    flex-direction: column;
+    margin: auto;
+  }
+  .section_navigation .contact_photo button {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .section_navigation .navigation_photo {
+    display: none;
+  }
+  .section_suggestion h2 {
+    margin: 25px 30px;
+  }
+  .section_suggestion .suggestion_photo {
+    flex-direction: column;
+    margin: 0 30px;
+    gap: 20px;
+  }
+  .section_suggestion .suggestion_photo .related-photo {
+    width: 100%;
+  }
+  .section_suggestion .suggestion_photo .related-photo img {
+    height: 45vh;
+    width: 100%;
+  }
+}
 /* ** IMPORT FONTS ** */
 /* ********* STYLE GENERALE ********** */
 body {
+  text-transform: uppercase;
   margin: 0;
   color: black;
   font-family: "space mono", monospace;
