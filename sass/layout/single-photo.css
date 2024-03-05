@@ -29,13 +29,12 @@
 
 /* ********************** section navigation ****************** */
 .section_navigation {
-  height: 130px;
+  height: 118px;
   display: flex;
   margin: 0 100px 70px;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   border-bottom: solid 2px black;
-  padding-bottom: 1em;
 }
 .section_navigation .contact_photo {
   width: 50%;
@@ -50,6 +49,7 @@
 .section_navigation .navigation_photo {
   display: flex;
   gap: 50px;
+  margin-top: 75px;
 }
 
 .next-photo-link {
@@ -91,7 +91,7 @@
 .prev-photo-link:hover .thumbnail,
 .next-photo-link:hover .thumbnail {
   width: 100px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
-  height: 100px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
+  height: 80px; /* Ajustez cette valeur en fonction de la taille souhaitée pour les miniatures */
 }
 
 /* ******************* photos associées ******************** */
@@ -109,20 +109,19 @@
 }
 .suggestion_photo .related-photo img {
   width: 95%;
-  height: 60vh;
+  height: 40vw;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.suggestion_photo :last-child {
+.suggestion_photo :nth-child(2) {
   text-align: end;
 }
 
 /* ****************** version responsive ******************* */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .section_photo {
     flex-direction: column-reverse;
-    margin: 0 30px;
-    border-bottom: solid 2px black;
+    margin: 0 30px 20px;
   }
   .section_photo .description_photo {
     width: 100%;
@@ -139,6 +138,7 @@
   .section_navigation {
     width: 100%;
     margin: auto;
+    border-top: solid 2px black;
   }
   .section_navigation .contact_photo {
     width: 80%;
@@ -157,14 +157,14 @@
   }
   .section_suggestion .suggestion_photo {
     flex-direction: column;
-    margin: 0 30px;
+    margin: 0 30px 20px;
     gap: 20px;
   }
   .section_suggestion .suggestion_photo .related-photo {
     width: 100%;
   }
   .section_suggestion .suggestion_photo .related-photo img {
-    height: 45vh;
+    height: 65vw;
     width: 100%;
   }
 }/*# sourceMappingURL=single-photo.css.map */

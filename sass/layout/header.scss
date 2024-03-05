@@ -1,6 +1,11 @@
 /* ************************** HEADER **************************** */
+header {
+  box-shadow: 0px 4px 14px 10px #00000008;
+}
+
 .header {
-  margin: 20px 100px;
+  margin: 0 100px;
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,7 +27,8 @@
 /* ************************** MOBILE MENU **************************** */
 @media screen and (max-width: 768px) {
   .header {
-    margin: 20px 26px;
+    margin: 0 26px 20px;
+    padding: 20px 0;
   }
   #menu-menu {
     width: 100%;

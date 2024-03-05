@@ -1,43 +1,74 @@
-.related-photo {
+.suggestion_photo .related-photo {
   position: relative;
 }
-
-.related-photo img {
-  transition: all 0.3s ease-in-out;
-}
-
-.related-photo:hover img {
-  filter: grayscale(100%);
-}
-
-.related-photo::before,
-.related-photo::after {
-  content: "";
+.suggestion_photo .related-photo .hover_photo {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 95%;
+  height: 0vw;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: all 0.8s ease-in-out;
   opacity: 0;
-  transition: all 0.3s ease-in-out;
 }
-
-.related-photo:hover::before,
-.related-photo:hover::after {
+.suggestion_photo .related-photo .hover_photo a .eye {
+  position: absolute;
+  width: 4vw;
+  height: 3vw;
+  -o-object-fit: contain;
+     object-fit: contain;
+  top: 45%;
+  right: 42%;
+}
+.suggestion_photo .related-photo .hover_photo .fullscreen {
+  position: absolute;
+  width: 4vw;
+  height: 3vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+  top: 18px;
+  right: 20px;
+}
+.suggestion_photo .related-photo .hover_photo .reference {
+  position: absolute;
+  bottom: 0;
+  left: 2vw;
+  color: white;
+}
+.suggestion_photo .related-photo .hover_photo .categorie {
+  position: absolute;
+  color: white;
+  bottom: 0;
+  right: 2vw;
+}
+.suggestion_photo .related-photo:hover .hover_photo {
+  font-size: 0.8em;
+  height: 40vw;
   opacity: 1;
 }
-
-.related-photo::before {
-  top: 50%;
-  left: 40%;
-  background-image: url("../assets/images/eye-icon.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  z-index: 1;
+.suggestion_photo :nth-child(2) .hover_photo {
+  left: auto;
+  right: 0;
 }
 
-.related-photo::after {
-  top: 20px;
-  right: 20px;
-  background-image: url("../assets/images/fullscreen-icon.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+/* ****************** version responsive ******************* */
+@media screen and (max-width: 768px) {
+  .suggestion_photo .related-photo .hover_photo {
+    width: 100%;
+    height: 0vw;
+  }
+  .suggestion_photo .related-photo .hover_photo a .eye {
+    width: 50px;
+    right: 42%;
+  }
+  .suggestion_photo .related-photo .hover_photo .fullscreen {
+    width: 50px;
+  }
+  .suggestion_photo .related-photo:hover .hover_photo {
+    height: 65vw;
+  }
 }/*# sourceMappingURL=photo.css.map */

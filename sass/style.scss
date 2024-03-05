@@ -4,6 +4,7 @@
 @import "./layout/footer.scss";
 @import "./components/modal.scss";
 @import "./components/photo.scss";
+@import "./components/lightbox.scss";
 @import "./layout/single-photo.scss";
 /* ** IMPORT FONTS ** */
 
@@ -20,12 +21,17 @@ a {
   color: black;
 }
 
+a:hover {
+  font-weight: bold;
+}
+
 ul {
   list-style-type: none;
 }
 
 .hover_button,
 .hover_input {
+  background-color: #d8d8d8;
   border: none;
   transition: all 1.5s;
 }

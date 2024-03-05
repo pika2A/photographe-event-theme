@@ -8,11 +8,6 @@ jQuery(document).ready(function ($) {
     $("#refField").val(reference);
   });
 
-  // Quand l'utilisateur clique sur le bouton pour fermer la modal
-  $(".close").click(function () {
-    $("#myModal").css("display", "none");
-  });
-
   // Quand l'utilisateur clique en dehors de la modal, la fermer
   $(window).click(function (event) {
     if (event.target == $("#myModal")[0]) {

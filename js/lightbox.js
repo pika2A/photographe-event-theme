@@ -1,37 +1,84 @@
-/* document.addEventListener("DOMContentLoaded", function () {
-  var relatedPhotos = document.querySelectorAll(".related-photo");
-  relatedPhotos.forEach(function (photo) {
-    photo.querySelector("::after").addEventListener("click", function () {
-      var img = document.createElement("img");
-      img.src = photo.querySelector("img").src;
-      var lightbox = document.createElement("div");
-      lightbox.id = "lightbox";
-      lightbox.appendChild(img);
-      document.body.appendChild(lightbox);
-      lightbox.addEventListener("click", function () {
-        document.body.removeChild(lightbox);
-      });
-    });
-  });
-});*/
-
 document.addEventListener("DOMContentLoaded", function () {
-  // Attend que le document soit chargé
-  var lightboxTriggers = document.querySelectorAll(".lightbox-trigger"); // Sélectionne tous les déclencheurs de lightbox
-  lightboxTriggers.forEach(function (trigger) {
-    // Parcoure chaque déclencheur de lightbox
-    trigger.addEventListener("click", function () {
-      // Ajoute un gestionnaire d'événements pour l'événement de clic
-      var img = document.createElement("img"); // Crée un nouvel élément img
-      img.src = this.parentElement.querySelector("img").src; // Définit l'attribut src de l'élément img sur l'URL de la photo
-      var lightbox = document.createElement("div"); // Crée un nouvel élément div pour la lightbox
-      lightbox.id = "lightbox"; // Donne un ID à la lightbox
-      lightbox.appendChild(img); // Ajoute l'élément img à la lightbox
-      document.body.appendChild(lightbox); // Ajoute la lightbox au corps du document
-      lightbox.addEventListener("click", function () {
-        // Ajoute un gestionnaire d'événements pour l'événement de clic sur la lightbox
-        document.body.removeChild(lightbox); // Supprime la lightbox lorsque l'on clique dessus
-      });
-    });
+  // Récupération des éléments nécessaires
+  const fullscreenIcons = document.querySelectorAll(".fullscreen");
+  const lightbox = document.getElementById("lightbox");
+  const closeButton = lightbox.querySelector(".cross");
+  const prevButton = lightbox.querySelector(".prev");
+  const nextButton = lightbox.querySelector(".next");
+  // Stocke toutes les images dans un tableau
+  const images = Array.from(document.querySelectorAll(".fullscreen")).map(
+    (img) => img.parentElement.dataset.imageUrl
+  );
+  // Stocke l'index de l'image actuellement affichée
+  let currentIndex = 0;
+
+  //fonction pour ouvrir la lightbox
+  function openLightbox(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du clic
+
+    // Vérifie si l'élément cliqué est l'image de l'icone "fullscreen"
+    let targetElement = event.target;
+    if (targetElement.classList.contains("fullscreen")) {
+      // si c'est le cas,utilise l'élément parent pour récupérer l'URL de l'image
+      targetElement = targetElement.parentElement;
+    }
+
+    // Récupère l'URL de l'image et les informations sur laquelle on clique
+    const imageUrl = targetElement.dataset.imageUrl;
+    const reference = targetElement.dataset.reference;
+    const category = targetElement.dataset.category;
+
+    // Récupère les éléments de la lightbox
+    const lightboxImage = lightbox.querySelector(".lightbox-image");
+    const lightboxReference = lightbox.querySelector(
+      ".lightbox-info .reference"
+    );
+    const lightboxCategory = lightbox.querySelector(".lightbox-info .category");
+
+    // Conservez l'URL de l'image de l'icône de fermeture
+    const closeButtonImage = closeButton.querySelector("img");
+    const closeButtonImageUrl = closeButtonImage.src;
+
+    // Changez l'URL de l'image et les informations de la lightbox
+    lightboxImage.src = imageUrl;
+    lightboxReference.textContent = "Référence : " + reference;
+    lightboxCategory.textContent = "Catégorie : " + category;
+
+    // Rétabli l'URL de l'image de l'icône de fermeture
+    closeButtonImage.src = closeButtonImageUrl;
+
+    lightbox.classList.add("active");
+  }
+
+  // Fonction pour fermer la lightbox
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+  }
+
+  function nextPhoto() {
+    // Incrémentez currentIndex et utilisez le modulo pour s'assurer qu'il reste dans les limites du tableau
+    currentIndex = (currentIndex + 1) % images.length;
+
+    // Mettez à jour l'image de la lightbox
+    const lightboxImage = lightbox.querySelector(".lightbox-image");
+    lightboxImage.src = images[currentIndex];
+  }
+
+  function prevPhoto() {
+    // Décrémentez currentIndex et utilisez le modulo pour s'assurer qu'il reste dans les limites du tableau
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+    // Mettez à jour l'image de la lightbox
+    const lightboxImage = lightbox.querySelector(".lightbox-image");
+    lightboxImage.src = images[currentIndex];
+  }
+
+  // Ajout des écouteurs d'événements
+  fullscreenIcons.forEach((icon) => {
+    icon.addEventListener("click", (event) => openLightbox(event)); // Passe event comme paramètre
   });
+
+  closeButton.addEventListener("click", closeLightbox);
+  prevButton.addEventListener("click", prevPhoto);
+  nextButton.addEventListener("click", nextPhoto);
 });

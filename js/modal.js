@@ -10,9 +10,6 @@ contactLink.onclick = function (event) {
   modal.style.display = "block";
 };
 
-// Récupérer l'élément <span> qui ferme la modale
-var span = document.getElementsByClassName("close")[0];
-
 // Quand l'utilisateur clique n'importe où en dehors de la modale, la fermer
 window.onclick = function (event) {
   if (event.target == modal) {
