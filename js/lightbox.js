@@ -1,83 +1,93 @@
+// J'attends que le contenu du document soit complètement chargé avant d'exécuter mon code.
 document.addEventListener("DOMContentLoaded", function () {
-  // Récupération des éléments nécessaires
+  // Je récupère tous les éléments avec la classe "fullscreen". Ces éléments sont stockés dans un tableau.
   const fullscreenIcons = document.querySelectorAll(".fullscreen");
+
+  // Je récupère l'élément avec l'ID "lightbox".
   const lightbox = document.getElementById("lightbox");
+
+  // Je récupère les éléments avec les classes "cross", "prev" et "next" à l'intérieur de l'élément "lightbox".
   const closeButton = lightbox.querySelector(".cross");
   const prevButton = lightbox.querySelector(".prev");
   const nextButton = lightbox.querySelector(".next");
-  // Stocke toutes les images dans un tableau
+
+  // Je crée un tableau avec les URL de toutes les images. Pour cela, je transforme la liste des éléments "fullscreen" en tableau, puis je récupère l'URL de chaque image à partir de l'attribut "data-image-url" de l'élément parent.
   const images = Array.from(document.querySelectorAll(".fullscreen")).map(
     (img) => img.parentElement.dataset.imageUrl
   );
-  // Stocke l'index de l'image actuellement affichée
+
+  // Je définis l'index de l'image actuellement affichée. Au début, cet index est 0.
   let currentIndex = 0;
 
-  //fonction pour ouvrir la lightbox
+  // Je définis une fonction pour ouvrir la lightbox.
   function openLightbox(event) {
-    event.preventDefault(); // Empêche le comportement par défaut du clic
+    // J'empêche le comportement par défaut du clic, qui serait de suivre le lien.
+    event.preventDefault();
 
-    // Vérifie si l'élément cliqué est l'image de l'icone "fullscreen"
+    // Je vérifie si l'élément cliqué est l'image de l'icône "fullscreen". Si c'est le cas, je récupère l'élément parent pour obtenir l'URL de l'image.
     let targetElement = event.target;
     if (targetElement.classList.contains("fullscreen")) {
-      // si c'est le cas,utilise l'élément parent pour récupérer l'URL de l'image
       targetElement = targetElement.parentElement;
     }
 
-    // Récupère l'URL de l'image et les informations sur laquelle on clique
+    // Je récupère l'URL de l'image et les informations sur laquelle on clique.
     const imageUrl = targetElement.dataset.imageUrl;
     const reference = targetElement.dataset.reference;
     const category = targetElement.dataset.category;
 
-    // Récupère les éléments de la lightbox
+    // Je récupère les éléments de la lightbox.
     const lightboxImage = lightbox.querySelector(".lightbox-image");
     const lightboxReference = lightbox.querySelector(
       ".lightbox-info .reference"
     );
     const lightboxCategory = lightbox.querySelector(".lightbox-info .category");
 
-    // Conservez l'URL de l'image de l'icône de fermeture
+    // Je conserve l'URL de l'image de l'icône de fermeture.
     const closeButtonImage = closeButton.querySelector("img");
     const closeButtonImageUrl = closeButtonImage.src;
 
-    // Changez l'URL de l'image et les informations de la lightbox
+    // Je change l'URL de l'image et les informations de la lightbox.
     lightboxImage.src = imageUrl;
     lightboxReference.textContent = "Référence : " + reference;
     lightboxCategory.textContent = "Catégorie : " + category;
 
-    // Rétabli l'URL de l'image de l'icône de fermeture
+    // Je rétablis l'URL de l'image de l'icône de fermeture.
     closeButtonImage.src = closeButtonImageUrl;
 
+    // J'ajoute la classe "active" à la lightbox pour la rendre visible.
     lightbox.classList.add("active");
   }
 
-  // Fonction pour fermer la lightbox
+  // Je définis une fonction pour fermer la lightbox.
   function closeLightbox() {
+    // Je retire la classe "active" de la lightbox pour la rendre invisible.
     lightbox.classList.remove("active");
   }
 
+  // Je définis une fonction pour afficher la photo suivante.
   function nextPhoto() {
-    // Incrémentez currentIndex et utilisez le modulo pour s'assurer qu'il reste dans les limites du tableau
+    // J'incrémente currentIndex et j'utilise le modulo pour m'assurer qu'il reste dans les limites du tableau.
     currentIndex = (currentIndex + 1) % images.length;
 
-    // Mettez à jour l'image de la lightbox
+    // Je mets à jour l'image de la lightbox.
     const lightboxImage = lightbox.querySelector(".lightbox-image");
     lightboxImage.src = images[currentIndex];
   }
 
+  // Je définis une fonction pour afficher la photo précédente.
   function prevPhoto() {
-    // Décrémentez currentIndex et utilisez le modulo pour s'assurer qu'il reste dans les limites du tableau
+    // Je décrémente currentIndex et j'utilise le modulo pour m'assurer qu'il reste dans les limites du tableau.
     currentIndex = (currentIndex - 1 + images.length) % images.length;
 
-    // Mettez à jour l'image de la lightbox
+    // Je mets à jour l'image de la lightbox.
     const lightboxImage = lightbox.querySelector(".lightbox-image");
     lightboxImage.src = images[currentIndex];
   }
 
-  // Ajout des écouteurs d'événements
+  // J'ajoute des écouteurs d'événements sur les icônes "fullscreen", les boutons "close", "prev" et "next".
   fullscreenIcons.forEach((icon) => {
-    icon.addEventListener("click", (event) => openLightbox(event)); // Passe event comme paramètre
+    icon.addEventListener("click", openLightbox);
   });
-
   closeButton.addEventListener("click", closeLightbox);
   prevButton.addEventListener("click", prevPhoto);
   nextButton.addEventListener("click", nextPhoto);

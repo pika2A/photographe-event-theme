@@ -99,22 +99,20 @@
   margin: 50px 100px;
 }
 
-.suggestion_photo {
+.block_photo {
   display: flex;
   justify-content: space-between;
   margin: 0 100px 50px;
+  flex-wrap: wrap;
 }
-.suggestion_photo .related-photo {
-  width: 50%;
+.block_photo .photo {
+  width: 47%;
 }
-.suggestion_photo .related-photo img {
-  width: 95%;
+.block_photo .photo img {
+  width: 100%;
   height: 40vw;
   -o-object-fit: cover;
      object-fit: cover;
-}
-.suggestion_photo :nth-child(2) {
-  text-align: end;
 }
 
 /* ****************** version responsive ******************* */
@@ -155,15 +153,15 @@
   .section_suggestion h2 {
     margin: 25px 30px;
   }
-  .section_suggestion .suggestion_photo {
+  .section_suggestion .block_photo {
     flex-direction: column;
     margin: 0 30px 20px;
     gap: 20px;
   }
-  .section_suggestion .suggestion_photo .related-photo {
+  .section_suggestion .block_photo .photo {
     width: 100%;
   }
-  .section_suggestion .suggestion_photo .related-photo img {
+  .section_suggestion .block_photo .photo img {
     height: 65vw;
     width: 100%;
   }

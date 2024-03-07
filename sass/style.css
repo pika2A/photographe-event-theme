@@ -40,6 +40,9 @@ header {
     margin: 0 26px 20px;
     padding: 20px 0;
   }
+  .header .logo {
+    width: 45vw;
+  }
   #menu-menu {
     width: 100%;
     justify-content: center;
@@ -86,11 +89,11 @@ header {
     opacity: 0;
   }
   .menu-toggle.cross .line:nth-child(3) {
-    transform: rotate(45deg) translate(-8px, -16px);
+    transform: rotate(45deg) translate(-8px, -17px);
   }
   .menu-toggle-icon span {
-    width: 2rem;
-    height: 0.25rem;
+    width: 1.5rem;
+    height: 0.2rem;
     background: black;
   }
   #menu-menu.open {
@@ -148,7 +151,6 @@ header {
   display: none; /* Caché par défaut */
   position: fixed; /* Reste en place */
   z-index: 1; /* Situé en haut */
-  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -235,18 +237,21 @@ header {
 @media screen and (max-width: 768px) {
   .wpcf7,
   img {
-    width: 286px;
+    width: 80vw;
+  }
+  .wpcf7 {
+    height: 180vw;
   }
   .form p {
     width: 190px;
   }
 }
-.suggestion_photo .related-photo {
+.photo {
   position: relative;
 }
-.suggestion_photo .related-photo .hover_photo {
+.photo .hover_photo {
   position: absolute;
-  width: 95%;
+  width: 100%;
   height: 0vw;
   top: 0;
   left: 0;
@@ -258,7 +263,7 @@ header {
   transition: all 0.8s ease-in-out;
   opacity: 0;
 }
-.suggestion_photo .related-photo .hover_photo a .eye {
+.photo .hover_photo .eye {
   position: absolute;
   width: 4vw;
   height: 3vw;
@@ -267,7 +272,7 @@ header {
   top: 45%;
   right: 42%;
 }
-.suggestion_photo .related-photo .hover_photo .fullscreen {
+.photo .hover_photo .fullscreen {
   position: absolute;
   width: 4vw;
   height: 3vh;
@@ -276,24 +281,24 @@ header {
   top: 18px;
   right: 20px;
 }
-.suggestion_photo .related-photo .hover_photo .reference {
+.photo .hover_photo .reference {
   position: absolute;
   bottom: 0;
   left: 2vw;
   color: white;
 }
-.suggestion_photo .related-photo .hover_photo .categorie {
+.photo .hover_photo .categorie {
   position: absolute;
   color: white;
   bottom: 0;
   right: 2vw;
 }
-.suggestion_photo .related-photo:hover .hover_photo {
+.photo:hover .hover_photo {
   font-size: 0.8em;
   height: 40vw;
   opacity: 1;
 }
-.suggestion_photo :nth-child(2) .hover_photo {
+.photo :nth-child(2) .hover_photo {
   left: auto;
   right: 0;
 }
@@ -468,22 +473,20 @@ header {
   margin: 50px 100px;
 }
 
-.suggestion_photo {
+.block_photo {
   display: flex;
   justify-content: space-between;
   margin: 0 100px 50px;
+  flex-wrap: wrap;
 }
-.suggestion_photo .related-photo {
-  width: 50%;
+.block_photo .photo {
+  width: 47%;
 }
-.suggestion_photo .related-photo img {
-  width: 95%;
+.block_photo .photo img {
+  width: 100%;
   height: 40vw;
   -o-object-fit: cover;
      object-fit: cover;
-}
-.suggestion_photo :nth-child(2) {
-  text-align: end;
 }
 
 /* ****************** version responsive ******************* */
@@ -524,15 +527,15 @@ header {
   .section_suggestion h2 {
     margin: 25px 30px;
   }
-  .section_suggestion .suggestion_photo {
+  .section_suggestion .block_photo {
     flex-direction: column;
     margin: 0 30px 20px;
     gap: 20px;
   }
-  .section_suggestion .suggestion_photo .related-photo {
+  .section_suggestion .block_photo .photo {
     width: 100%;
   }
-  .section_suggestion .suggestion_photo .related-photo img {
+  .section_suggestion .block_photo .photo img {
     height: 65vw;
     width: 100%;
   }

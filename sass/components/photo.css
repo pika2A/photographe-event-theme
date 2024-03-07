@@ -1,9 +1,9 @@
-.suggestion_photo .related-photo {
+.photo {
   position: relative;
 }
-.suggestion_photo .related-photo .hover_photo {
+.photo .hover_photo {
   position: absolute;
-  width: 95%;
+  width: 100%;
   height: 0vw;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@
   transition: all 0.8s ease-in-out;
   opacity: 0;
 }
-.suggestion_photo .related-photo .hover_photo a .eye {
+.photo .hover_photo .eye {
   position: absolute;
   width: 4vw;
   height: 3vw;
@@ -24,7 +24,7 @@
   top: 45%;
   right: 42%;
 }
-.suggestion_photo .related-photo .hover_photo .fullscreen {
+.photo .hover_photo .fullscreen {
   position: absolute;
   width: 4vw;
   height: 3vh;
@@ -33,24 +33,24 @@
   top: 18px;
   right: 20px;
 }
-.suggestion_photo .related-photo .hover_photo .reference {
+.photo .hover_photo .reference {
   position: absolute;
   bottom: 0;
   left: 2vw;
   color: white;
 }
-.suggestion_photo .related-photo .hover_photo .categorie {
+.photo .hover_photo .categorie {
   position: absolute;
   color: white;
   bottom: 0;
   right: 2vw;
 }
-.suggestion_photo .related-photo:hover .hover_photo {
+.photo:hover .hover_photo {
   font-size: 0.8em;
   height: 40vw;
   opacity: 1;
 }
-.suggestion_photo :nth-child(2) .hover_photo {
+.photo :nth-child(2) .hover_photo {
   left: auto;
   right: 0;
 }

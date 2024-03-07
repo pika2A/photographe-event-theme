@@ -11,8 +11,6 @@
 
     <!-- j'integre ma modale -->
     <?php get_template_part('template-parts/contact-modal'); ?>
-    <!-- j'integre ma lightbox -->
-    <?php get_template_part('template-parts/lightbox'); ?>
 
     <?php wp_footer(); ?>
 

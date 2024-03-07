@@ -1,59 +1,58 @@
-.suggestion_photo {
-  & .related-photo {
-    position: relative;
+.photo {
+  position: relative;
 
-    & .hover_photo {
+  & .hover_photo {
+    position: absolute;
+    width: 100%;
+    height: 0vw;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all 0.8s ease-in-out;
+    opacity: 0;
+
+    & .eye {
       position: absolute;
-      width: 95%;
-      height: 0vw;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.7);
-      transition: all 0.8s ease-in-out;
-      opacity: 0;
-      & a {
-        & .eye {
-          position: absolute;
-          width: 4vw;
-          height: 3vw;
-          object-fit: contain;
-          top: 45%;
-          right: 42%;
-        }
-      }
-      & .fullscreen {
-        position: absolute;
-        width: 4vw;
-        height: 3vh;
-        object-fit: contain;
-        top: 18px;
-        right: 20px;
-      }
-      & .reference {
-        position: absolute;
-        bottom: 0;
-        left: 2vw;
-        color: white;
-      }
-      & .categorie {
-        position: absolute;
-        color: white;
-        bottom: 0;
-        right: 2vw;
-      }
+      width: 4vw;
+      height: 3vw;
+      object-fit: contain;
+      top: 45%;
+      right: 42%;
     }
-    &:hover {
-      & .hover_photo {
-        font-size: 0.8em;
-        height: 40vw;
-        opacity: 1;
-      }
+
+    & .fullscreen {
+      position: absolute;
+      width: 4vw;
+      height: 3vh;
+      object-fit: contain;
+      top: 18px;
+      right: 20px;
+    }
+    & .reference {
+      position: absolute;
+      bottom: 0;
+      left: 2vw;
+      color: white;
+    }
+    & .categorie {
+      position: absolute;
+      color: white;
+      bottom: 0;
+      right: 2vw;
     }
   }
+  &:hover {
+    & .hover_photo {
+      font-size: 0.8em;
+      height: 40vw;
+      opacity: 1;
+    }
+  }
+
   & :nth-child(2) {
     & .hover_photo {
       left: auto;
@@ -61,7 +60,6 @@
     }
   }
 }
-
 /* ****************** version responsive ******************* */
 
 @media screen and (max-width: 768px) {

@@ -29,6 +29,9 @@ header {
   .header {
     margin: 0 26px 20px;
     padding: 20px 0;
+    & .logo {
+      width: 45vw;
+    }
   }
   #menu-menu {
     width: 100%;
@@ -80,12 +83,12 @@ header {
     }
 
     &.cross .line:nth-child(3) {
-      transform: rotate(45deg) translate(-8px, -16px);
+      transform: rotate(45deg) translate(-8px, -17px);
     }
   }
   .menu-toggle-icon span {
-    width: 2rem;
-    height: 0.25rem;
+    width: 1.5rem;
+    height: 0.2rem;
     background: black;
   }
 

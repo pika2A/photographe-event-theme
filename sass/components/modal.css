@@ -8,7 +8,6 @@
   display: none; /* Caché par défaut */
   position: fixed; /* Reste en place */
   z-index: 1; /* Situé en haut */
-  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -95,7 +94,10 @@
 @media screen and (max-width: 768px) {
   .wpcf7,
   img {
-    width: 286px;
+    width: 80vw;
+  }
+  .wpcf7 {
+    height: 180vw;
   }
   .form p {
     width: 190px;
