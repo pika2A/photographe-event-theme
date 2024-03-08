@@ -1,5 +1,9 @@
 <?php get_header(); ?>
 
+<section class="section_hero">
+    <?php get_template_part('template-parts/hero'); ?>
+</section>
+
 <?php
 $args = array(
     'post_type' => 'photo',
@@ -10,7 +14,7 @@ $related_photos = new WP_Query($args);
 
 if ($related_photos->have_posts()) {
 
-    echo '<section class="block_photo">';
+    echo '<section id="photos" class="block_photo">';
 
     while ($related_photos->have_posts()) {
         $related_photos->the_post();
