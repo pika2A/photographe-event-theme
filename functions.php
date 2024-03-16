@@ -14,7 +14,7 @@ function photographe_event_theme_enqueue_styles()
 {
     // Déclarer le fichier CSS à un autre emplacement
     wp_enqueue_style(
-        'photographe_event',
+        'photographe_event_custom',
         get_template_directory_uri() . '/sass/style.css',
         array(),
         '1.0'
@@ -22,7 +22,7 @@ function photographe_event_theme_enqueue_styles()
 
     // Déclarer le fichier style.css à la racine du thème
     wp_enqueue_style(
-        'photographe_event',
+        'photographe_event_main',
         get_stylesheet_uri(),
         array(),
         '1.0'
@@ -76,7 +76,53 @@ function photographe_event_enqueue_scripts()
         '1.0',
         true
     );
+
+    wp_enqueue_script(
+        'pagination',
+        get_template_directory_uri() . '/js/pagination.js',
+        array('jquery'),
+        '1.0.0',
+        true
+    );
+    wp_localize_script('pagination', 'theme_directory', array('uri' => get_template_directory_uri()));
 }
+
+
+//PAGINATION
+function photo_load_more()
+{
+    $ajaxposts = new WP_Query([
+        'post_type' => 'photo',
+        'posts_per_page' => 8,
+        'paged' => $_POST['paged'],
+    ]);
+
+    $response = '';
+    $max_pages = $ajaxposts->max_num_pages;
+
+    if ($ajaxposts->have_posts()) {
+        ob_start();
+        while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
+            set_query_var('photo_reference', get_field('référence'));
+            set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
+            $response .= get_template_part('template-parts/photo_block');
+        endwhile;
+        $output = ob_get_contents();
+        ob_end_clean();
+    } else {
+        $response = '';
+    }
+
+    $result = [
+        'max' => $max_pages,
+        'html' => $output,
+    ];
+
+    echo json_encode($result);
+    exit;
+}
+add_action('wp_ajax_photo_load_more', 'photo_load_more');
+add_action('wp_ajax_nopriv_photo_load_more', 'photo_load_more');
 
 
 //actions

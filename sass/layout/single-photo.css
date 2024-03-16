@@ -104,6 +104,7 @@
   justify-content: space-between;
   margin: 0 100px 50px;
   flex-wrap: wrap;
+  gap: 20px;
 }
 .block_photo .photo {
   width: 47%;

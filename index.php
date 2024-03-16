@@ -4,32 +4,34 @@
     <?php get_template_part('template-parts/hero'); ?>
 </section>
 
-<?php
-$args = array(
-    'post_type' => 'photo',
-    'posts_per_page' => 8,
-);
+<section class="section_block-photo">
+    <div id="photos" class="block_photo">
+        <?php
+        $args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => 8,
+            'paged' => 1,
+        );
 
-$related_photos = new WP_Query($args);
+        $photos = new WP_Query($args);
 
-if ($related_photos->have_posts()) {
+        if ($photos->have_posts()) {
+            while ($photos->have_posts()) {
+                $photos->the_post();
+                // Définissez les variables que vous voulez passer au template
+                set_query_var('photo_reference', get_field('référence'));
+                set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
+                get_template_part('template-parts/photo_block');
+            }
+        }
 
-    echo '<section id="photos" class="block_photo">';
+        ?>
+    </div>
+    <div class="btn_load-more">
+        <button id="load-more" class="hover_button">Charger plus </button>
+    </div>
+</section>
 
-    while ($related_photos->have_posts()) {
-        $related_photos->the_post();
-
-        // Définissez les variables que vous voulez passer au template
-        set_query_var('related_photo_reference', get_field('référence'));
-        set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
-
-        get_template_part('template-parts/photo_block');
-    }
-
-    echo '</section>';
-
-    get_template_part('template-parts/lightbox');
-}
-?>
+<?php get_template_part('template-parts/lightbox'); ?>
 
 <?php get_footer(); ?>

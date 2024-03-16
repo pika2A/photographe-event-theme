@@ -119,6 +119,7 @@ if (!empty($categories_photos_terms) && !is_wp_error($categories_photos_terms)) 
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => 2,
+        'orderby' => 'rand',
         'post__not_in' => array(get_the_ID()),
         'tax_query' => array(
             array(
@@ -128,17 +129,17 @@ if (!empty($categories_photos_terms) && !is_wp_error($categories_photos_terms)) 
             ),
         ),
     );
-    $related_photos = new WP_Query($args);
+    $photos = new WP_Query($args);
 }
 
 // Si il y a des photos liées, je les affiche dans une section "section_suggestion".
-if ($related_photos->have_posts()) {
+if ($photos->have_posts()) {
     echo '<section class="section_suggestion">';
     echo '<h2>Vous aimerez aussi :</h2>';
     echo '<div class="block_photo">';
-    while ($related_photos->have_posts()) {
-        $related_photos->the_post();
-        set_query_var('related_photo_reference', get_field('référence'));
+    while ($photos->have_posts()) {
+        $photos->the_post();
+        set_query_var('photo_reference', get_field('référence'));
         set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
         get_template_part('template-parts/photo_block');
     }

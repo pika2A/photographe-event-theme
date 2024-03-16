@@ -17,11 +17,15 @@ $reference = get_field('référence');
     <!-- J'ouvre une div avec la classe "hover_photo". Cette div contiendra les icônes qui apparaissent lorsque l'utilisateur survole la photo. -->
     <div class="hover_photo">
 
-        <!-- J'affiche une icône "oeil" qui indique que l'utilisateur peut cliquer pour voir la photo. -->
-        <img class="eye" src="<?php echo get_template_directory_uri(); ?>/assets/images/eye-icon.png" alt="icone oeil pour voir la photo">
+        <!-- J'ouvre un lien autour de l'icône "oeil" pour rediriger vers la page de la photo. -->
+        <a href="<?php the_permalink(); ?>" class="eye-link">
+            <!-- J'affiche une icône "oeil" qui indique que l'utilisateur peut cliquer pour voir la photo. -->
+            <img class="eye" src="<?php echo get_template_directory_uri(); ?>/assets/images/eye-icon.png" alt="icone oeil pour voir la photo">
+        </a>
 
         <!-- J'ouvre une balise span qui contient l'URL de la photo en taille réelle, la référence de la photo et la catégorie de la photo. -->
         <span data-image-url="<?php echo get_the_post_thumbnail_url(); ?>" data-reference="<?php echo esc_attr($reference); ?>" data-category="<?php echo $category->name; ?>">
+
 
             <!-- J'affiche une icône "fullscreen" qui indique que l'utilisateur peut cliquer pour voir la photo en plein écran. -->
             <img class="fullscreen" src="<?php echo get_template_directory_uri(); ?>/assets/images/fullscreen-icon.png" alt="icon pour agrandir la photo">

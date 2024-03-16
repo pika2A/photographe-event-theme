@@ -4,6 +4,7 @@
   margin-bottom: 2vw;
 }
 .section_hero .hero {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +14,28 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+.section_hero .hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
 .section_hero .hero .logo_hero {
+  position: relative;
+  z-index: 3;
   width: 50%;
   height: 5vw;
+}
+
+.section_block-photo .btn_load-more {
+  text-align: center;
+}
+.section_block-photo .btn_load-more #load-more {
+  width: 270px;
+  height: 50px;
+  margin-bottom: 50px;
 }/*# sourceMappingURL=accueil.css.map */

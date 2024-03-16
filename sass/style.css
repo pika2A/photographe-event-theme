@@ -150,7 +150,7 @@ header {
 .modal {
   display: none; /* Caché par défaut */
   position: fixed; /* Reste en place */
-  z-index: 1; /* Situé en haut */
+  z-index: 5; /* Situé en haut */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -379,6 +379,7 @@ header {
   margin-bottom: 2vw;
 }
 .section_hero .hero {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -388,9 +389,30 @@ header {
   background-position: center;
   background-repeat: no-repeat;
 }
+.section_hero .hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
 .section_hero .hero .logo_hero {
+  position: relative;
+  z-index: 3;
   width: 50%;
   height: 5vw;
+}
+
+.section_block-photo .btn_load-more {
+  text-align: center;
+}
+.section_block-photo .btn_load-more #load-more {
+  width: 270px;
+  height: 50px;
+  margin-bottom: 50px;
 }
 
 .section_photo {
@@ -498,6 +520,7 @@ header {
   justify-content: space-between;
   margin: 0 100px 50px;
   flex-wrap: wrap;
+  gap: 20px;
 }
 .block_photo .photo {
   width: 47%;
