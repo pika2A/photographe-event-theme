@@ -406,6 +406,9 @@ header {
   height: 5vw;
 }
 
+.section_block-photo {
+  margin-top: 50px;
+}
 .section_block-photo .btn_load-more {
   text-align: center;
 }
