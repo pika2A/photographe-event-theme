@@ -7,7 +7,7 @@
         'theme_location' => 'footer-menu',
     ]); ?>
 
-    <p>Tous droits réservés</p>
+    <p class="footer_droits">Tous droits réservés</p>
 
     <!-- j'integre ma modale -->
     <?php get_template_part('template-parts/contact-modal'); ?>

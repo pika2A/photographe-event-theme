@@ -28,23 +28,26 @@ header {
 /* ************************** MOBILE MENU **************************** */
 @media screen and (max-width: 768px) {
   .header {
-    margin: 0 26px 20px;
+    margin: 0 26px 0px;
     padding: 20px 0;
   }
-  .header .logo {
+  .header .logo1 {
+    padding-top: 8px;
+  }
+  .header .logo1 .logo {
     width: 45vw;
   }
   #menu-menu {
     width: 100%;
     justify-content: center;
-    z-index: 1;
+    z-index: 4;
   }
   #menu-menu a {
     color: white;
   }
   .menu {
     position: absolute;
-    top: 85px;
+    top: 40px;
     left: 0;
     flex-direction: column;
     width: 100%;
@@ -58,7 +61,7 @@ header {
     transition: height 1.5s ease;
   }
   .menu.open {
-    height: 88vh;
+    height: 95vh;
   }
   .menu-toggle {
     padding-top: 5px;

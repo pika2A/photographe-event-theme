@@ -28,6 +28,13 @@
     align-items: center;
     gap: 25px;
   }
+  .footer .menu-footer-container {
+    height: auto;
+    padding-top: 25px;
+  }
+  .footer .footer_droits {
+    margin: 0 0 25px;
+  }
   #menu-footer {
     position: relative;
     padding: 0;

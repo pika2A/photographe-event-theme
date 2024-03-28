@@ -96,8 +96,9 @@
   img {
     width: 80vw;
   }
-  .wpcf7 {
-    height: 180vw;
+  .wpcf7 .invalid,
+  img .invalid {
+    font-size: 15px;
   }
   .form p {
     width: 190px;

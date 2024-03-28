@@ -31,14 +31,116 @@
   }
 }
 
+.section_filter-photos {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 100px 0px;
+  font-family: "Poppins", sans-serif;
+  & .custom-select {
+    display: flex;
+    justify-content: space-between;
+    width: 47%;
+    & #format-filter,
+    #category-filter {
+      height: 40px;
+      width: 40%;
+    }
+    & .select2-container--open {
+      border: 1.5px solid #215aff !important;
+      border-top-left-radius: 8px !important;
+      border-top-right-radius: 8px !important;
+    }
+  }
+  & .custom-select:last-child {
+    display: flex;
+    justify-content: flex-end;
+    width: 47%;
+    & #order-filter {
+      height: 40px;
+      width: 45%;
+    }
+    & .select2-container--open {
+      border: 1.5px solid #215aff;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+  }
+}
+
+/* **************** SECTION BLOCK PHOTO********************* */
 .section_block-photo {
-  margin-top: 50px;
+  margin-top: 40px;
   & .btn_load-more {
     text-align: center;
     & #load-more {
       width: 270px;
       height: 50px;
       margin-bottom: 50px;
+    }
+  }
+}
+
+/* ****************** RESPONSIVE **************************** */
+@media screen and (max-width: 768px) {
+  .section_hero {
+    height: 60vw;
+    & .hero {
+      & .logo_hero {
+        scale: 1.5;
+      }
+    }
+  }
+
+  .section_filter-photos {
+    flex-direction: column;
+    margin: 20px;
+    gap: 12px;
+    & .custom-select:last-child {
+      width: 100%;
+    }
+    & .custom-select {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      align-items: center;
+      & #category-filter,
+      #format-filter {
+        width: 80%;
+        & .selection {
+          & .select2-selection--single {
+            height: 40px;
+            display: flex;
+            align-items: center;
+          }
+          & .select2-selection--single::after {
+            top: 20%;
+          }
+        }
+      }
+    }
+    &:last-child {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .section_block-photo {
+    & .block_photo {
+      flex-direction: column;
+      margin: 25px;
+      align-content: center;
+      & .photo {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        & img {
+          height: 70vw;
+        }
+        & .hover_photo {
+          display: none;
+        }
+      }
     }
   }
 }

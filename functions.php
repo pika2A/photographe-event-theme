@@ -27,6 +27,14 @@ function photographe_event_theme_enqueue_styles()
         array(),
         '1.0'
     );
+
+    // Ajout du CSS de Select2
+    wp_enqueue_style(
+        'select2-css',
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css',
+        array(),
+        '4.1.0-beta.1'
+    );
 }
 
 // Fonction pour charger mes scripts
@@ -84,7 +92,6 @@ function photographe_event_enqueue_scripts()
         '1.0.0',
         true
     );
-    //   wp_localize_script('pagination', 'theme_directory', array('uri' => get_template_directory_uri()));
 
     wp_enqueue_script(
         'filtre_photos',
@@ -94,16 +101,58 @@ function photographe_event_enqueue_scripts()
         true
     );
     wp_localize_script('filtre_photos', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
+
+    // Ajout du JavaScript de Select2
+    wp_enqueue_script(
+        'select2-js',
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js',
+        array('jquery'),
+        '4.1.0-beta.1',
+        true
+    );
+
+    // Ajout du script pour initialiser Select2 sur les éléments <select>
+    wp_enqueue_script(
+        'select2-init',
+        get_template_directory_uri() . '/js/select2-init.js',
+        array('jquery', 'select2-js'),
+        '1.0.0',
+        true
+    );
 }
 
 
 //PAGINATION
 function photo_load_more()
 {
+    $category = $_POST['category'];
+    $format = $_POST['format'];
+    $order = $_POST['order'];
+
+    $tax_query = array();
+
+    if (!empty($category)) {
+        $tax_query[] = [
+            'taxonomy' => 'categories-photos',
+            'field' => 'slug',
+            'terms' => $category
+        ];
+    }
+
+    if (!empty($format)) {
+        $tax_query[] = [
+            'taxonomy' => 'format',
+            'field' => 'slug',
+            'terms' => $format
+        ];
+    }
     $ajaxposts = new WP_Query([
         'post_type' => 'photo',
         'posts_per_page' => 8,
         'paged' => $_POST['paged'],
+        'tax_query' => $tax_query,
+        'orderby' => 'date',
+        'order' => $order,
     ]);
 
     $response = '';
@@ -164,19 +213,29 @@ function filter_photos()
         'order' => $order,
     ]);
 
+    $max_pages = $ajaxposts->max_num_pages;
     $response = '';
 
     if ($ajaxposts->have_posts()) {
+
+        ob_start();
         while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
             set_query_var('photo_reference', get_field('référence'));
             set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
             $response .= get_template_part('template-parts/photo_block');
         endwhile;
+        $output = ob_get_contents();
+        ob_end_clean();
     } else {
         $response = 'empty';
     }
 
-    echo $response;
+    $result = [
+        'max' => $max_pages,
+        'html' => $output,
+    ];
+
+    echo json_encode($result);
     exit;
 }
 

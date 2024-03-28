@@ -31,8 +31,45 @@
   height: 5vw;
 }
 
+.section_filter-photos {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 100px 0px;
+  font-family: "Poppins", sans-serif;
+}
+.section_filter-photos .custom-select {
+  display: flex;
+  justify-content: space-between;
+  width: 47%;
+}
+.section_filter-photos .custom-select #format-filter,
+.section_filter-photos .custom-select #category-filter {
+  height: 40px;
+  width: 40%;
+}
+.section_filter-photos .custom-select .select2-container--open {
+  border: 1.5px solid #215aff !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+}
+.section_filter-photos .custom-select:last-child {
+  display: flex;
+  justify-content: flex-end;
+  width: 47%;
+}
+.section_filter-photos .custom-select:last-child #order-filter {
+  height: 40px;
+  width: 45%;
+}
+.section_filter-photos .custom-select:last-child .select2-container--open {
+  border: 1.5px solid #215aff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* **************** SECTION BLOCK PHOTO********************* */
 .section_block-photo {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .section_block-photo .btn_load-more {
   text-align: center;
@@ -41,4 +78,63 @@
   width: 270px;
   height: 50px;
   margin-bottom: 50px;
+}
+
+/* ****************** RESPONSIVE **************************** */
+@media screen and (max-width: 768px) {
+  .section_hero {
+    height: 60vw;
+  }
+  .section_hero .hero .logo_hero {
+    scale: 1.5;
+  }
+  .section_filter-photos {
+    flex-direction: column;
+    margin: 20px;
+    gap: 12px;
+  }
+  .section_filter-photos .custom-select:last-child {
+    width: 100%;
+  }
+  .section_filter-photos .custom-select {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    align-items: center;
+  }
+  .section_filter-photos .custom-select #category-filter,
+  .section_filter-photos .custom-select #format-filter {
+    width: 80%;
+  }
+  .section_filter-photos .custom-select #category-filter .selection .select2-selection--single,
+  .section_filter-photos .custom-select #format-filter .selection .select2-selection--single {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .section_filter-photos .custom-select #category-filter .selection .select2-selection--single::after,
+  .section_filter-photos .custom-select #format-filter .selection .select2-selection--single::after {
+    top: 20%;
+  }
+  .section_filter-photos:last-child {
+    display: flex;
+    justify-content: center;
+  }
+  .section_block-photo .block_photo {
+    flex-direction: column;
+    margin: 25px;
+    align-content: center;
+  }
+  .section_block-photo .block_photo .photo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .section_block-photo .block_photo .photo img {
+    height: 70vw;
+  }
+  .section_block-photo .block_photo .photo .hover_photo {
+    display: none;
+  }
 }/*# sourceMappingURL=accueil.css.map */
