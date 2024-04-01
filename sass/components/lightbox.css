@@ -30,6 +30,8 @@
   height: 50px;
 }
 #lightbox .lightbox-photo {
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
   max-width: 60%;
   max-height: 70%;
