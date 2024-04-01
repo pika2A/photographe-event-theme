@@ -1,0 +1,50 @@
+/* Style du conteneur de la boîte de sélection */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+
+  /* Style de la boîte de sélection */
+  select {
+    display: none; // cache l'élément SELECT original
+  }
+
+  /* Style de la flèche à l'intérieur de la boîte de sélection */
+  &::after {
+    content: "▲"; // Ajoute un symbole de flèche
+    font-size: 18px;
+    color: black;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    pointer-events: none; // empêche la flèche de réagir aux clics
+    transition: transform 0.3s ease; // animation pour la rotation de la flèche
+  }
+
+  /* Lorsque la boîte de sélection est ouverte, tourner la flèche */
+  &.active::after {
+    transform: rotate(180deg); // tourne la flèche de 180 degrés
+  }
+}
+
+/* Style des éléments (options) */
+.custom-option {
+  padding: 10px;
+  cursor: pointer; // change le curseur en main lors du survol
+  transition: background-color 0.3s ease; // animation pour le changement de couleur de fond
+
+  /* Style des éléments lors du survol */
+  &:hover {
+    background-color: #ffd6d6; // couleur de fond au survol
+  }
+
+  /* Style de l'élément sélectionné */
+  &.selected {
+    background-color: #e00000; // couleur de fond de l'élément sélectionné
+    color: white; // couleur du texte de l'élément sélectionné
+  }
+
+  /* Style des éléments lors du clic */
+  &:active {
+    background-color: #fe5858; // couleur de fond lors du clic
+  }
+}

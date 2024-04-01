@@ -2,7 +2,7 @@
 
 <footer class="footer">
 
-    <!-- j'integre le footerde mon interface WP -->
+    <!-- j'integre le footer de mon interface WP -->
     <?php wp_nav_menu([
         'theme_location' => 'footer-menu',
     ]); ?>

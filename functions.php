@@ -1,12 +1,10 @@
 <?php
-
 //enregistrer un emplacement de menu
 function photographe_event_register_menu()
 {
     register_nav_menu('main-menu', __('Menu principal', 'text-domain'));
     //pour placer le menu dans la barre structure du menu de WP
     register_nav_menu('footer-menu', __('Menu de pied de page', 'text-domain')); // Nouveau menu de pied de page
-
 }
 
 //pour charger les styles de mon thème.
@@ -121,16 +119,13 @@ function photographe_event_enqueue_scripts()
     );
 }
 
-
-//PAGINATION
-function photo_load_more()
+// Cette fonction gère la requête et renvoie les résultats
+function handle_request($category, $format, $order, $paged)
 {
-    $category = $_POST['category'];
-    $format = $_POST['format'];
-    $order = $_POST['order'];
-
+    // Initialisation de la requête
     $tax_query = array();
 
+    // Si une catégorie est spécifiée, ajoutez-la à la requête
     if (!empty($category)) {
         $tax_query[] = [
             'taxonomy' => 'categories-photos',
@@ -139,6 +134,7 @@ function photo_load_more()
         ];
     }
 
+    // Si un format est spécifié, ajoutez-le à la requête
     if (!empty($format)) {
         $tax_query[] = [
             'taxonomy' => 'format',
@@ -146,99 +142,68 @@ function photo_load_more()
             'terms' => $format
         ];
     }
+
+    // Exécute la requête avec les paramètres spécifiés
     $ajaxposts = new WP_Query([
         'post_type' => 'photo',
         'posts_per_page' => 8,
-        'paged' => $_POST['paged'],
+        'paged' => $paged,
         'tax_query' => $tax_query,
         'orderby' => 'date',
         'order' => $order,
     ]);
 
+    // Initialisation de la réponse
     $response = '';
+    // Obtention du nombre maximum de pages
     $max_pages = $ajaxposts->max_num_pages;
 
+    // Si la requête a des résultats
     if ($ajaxposts->have_posts()) {
+        // Démarre la capture de sortie
         ob_start();
+        // Parcourez tous les posts
         while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
+            // Définissez les variables de requête pour la référence de la photo et la catégorie
             set_query_var('photo_reference', get_field('référence'));
             set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
+            // Ajoutez le bloc de photo à la réponse
             $response .= get_template_part('template-parts/photo_block');
         endwhile;
+        // Obtenez le contenu de la capture de sortie et nettoyez-la
         $output = ob_get_contents();
         ob_end_clean();
     } else {
+        // Si la requête n'a pas de résultats, la réponse est vide
         $response = '';
     }
 
-    $result = [
+    // Retourne le résultat sous forme de tableau
+    return [
         'max' => $max_pages,
         'html' => $output,
     ];
+}
 
+// Cette fonction est appelée pour charger plus de photos
+function photo_load_more()
+{
+    // Appelle la fonction handle_request avec les paramètres POST
+    $result = handle_request($_POST['category'], $_POST['format'], $_POST['order'], $_POST['paged']);
+    // Renvoie le résultat sous forme de JSON
     echo json_encode($result);
     exit;
 }
 
-// Filtre photos
+// Cette fonction est appelée pour filtrer les photos
 function filter_photos()
 {
-    $category = $_POST['category'];
-    $format = $_POST['format'];
-    $order = $_POST['order'];
-
-    $tax_query = array();
-
-    if (!empty($category)) {
-        $tax_query[] = [
-            'taxonomy' => 'categories-photos',
-            'field' => 'slug',
-            'terms' => $category
-        ];
-    }
-
-    if (!empty($format)) {
-        $tax_query[] = [
-            'taxonomy' => 'format',
-            'field' => 'slug',
-            'terms' => $format
-        ];
-    }
-
-    $ajaxposts = new WP_Query([
-        'post_type' => 'photo',
-        'posts_per_page' => 8,
-        'tax_query' => $tax_query,
-        'orderby' => 'date',
-        'order' => $order,
-    ]);
-
-    $max_pages = $ajaxposts->max_num_pages;
-    $response = '';
-
-    if ($ajaxposts->have_posts()) {
-
-        ob_start();
-        while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
-            set_query_var('photo_reference', get_field('référence'));
-            set_query_var('category', get_the_terms(get_the_ID(), 'categories-photos')[0]);
-            $response .= get_template_part('template-parts/photo_block');
-        endwhile;
-        $output = ob_get_contents();
-        ob_end_clean();
-    } else {
-        $response = 'empty';
-    }
-
-    $result = [
-        'max' => $max_pages,
-        'html' => $output,
-    ];
-
+    // Appelle la fonction handle_request avec les paramètres POST
+    $result = handle_request($_POST['category'], $_POST['format'], $_POST['order'], 1);
+    // Renvoie le résultat sous forme de JSON
     echo json_encode($result);
     exit;
 }
-
 
 //actions
 add_action('after_setup_theme', 'photographe_event_register_menu');

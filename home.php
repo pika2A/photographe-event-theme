@@ -6,9 +6,9 @@
     <?php get_template_part('template-parts/hero'); ?>
 </section>
 
-
+<!-- section des filtres et du trie des photos -->
 <section class="section_filter-photos filter-photos">
-    <?php $categories = get_terms('categories-photos'); // Remplacez 'category' par le slug de votre taxonomie. 
+    <?php $categories = get_terms('categories-photos');
     ?>
 
     <div class="custom-select">
@@ -19,7 +19,7 @@
             <?php endforeach; ?>
         </select>
 
-        <?php $formats = get_terms('format'); // Remplacez 'format' par le slug de votre taxonomie. 
+        <?php $formats = get_terms('format');
         ?>
         <select id="format-filter">
             <option value="">Formats</option>
@@ -31,12 +31,13 @@
 
     <div class="custom-select">
         <select id="order-filter">
-            <option value="">Tier par</option>
+            <option value="">Trier par</option>
             <option value="DESC">La plus récente</option>
             <option value="ASC">La plus ancienne</option>
         </select>
     </div>
 </section>
+
 <!-- section liste photos -->
 <section class="section_block-photo">
     <div id="photos" class="block_photo">
@@ -58,9 +59,9 @@
                 get_template_part('template-parts/photo_block');
             }
         }
-
         ?>
     </div>
+
     <div class="btn_load-more">
         <button id="load-more" class="hover_button">Charger plus </button>
     </div>

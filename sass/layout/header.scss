@@ -28,7 +28,7 @@ header {
 @media screen and (max-width: 768px) {
   .header {
     margin: 0 26px 0px;
-    padding: 20px 0;
+    padding: 23px 0;
     & .logo1 {
       padding-top: 8px;
       & .logo {
@@ -40,6 +40,7 @@ header {
     width: 100%;
     justify-content: center;
     z-index: 4;
+    top: 10vw;
     & a {
       color: white;
     }

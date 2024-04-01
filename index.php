@@ -11,8 +11,8 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
- * @subpackage NathalieMota
- * @since NathalieMota 1.0
+ * @subpackage Photographe_Event
+ * @since Photographe-Event 1.0
  */
 get_header(); ?>
 <?php get_footer() ?>
